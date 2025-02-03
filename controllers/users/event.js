@@ -8,6 +8,26 @@ const { normalizePath, removeFile } = require("../../utils/FileHelper");
 */
 
 
+// Main Crud      
+const getAllEvents = async (req, res) => {
+    const responseHandler = new ResponseHandler(res);
+    try {
+        const events = await EventModule.getAll();
+        return responseHandler.success(events, "Events Feched Successfully", 201);
+    } catch (error) {
+        return responseHandler.error(error.message, 500, error);
+    }
+}
+const getEventBiID = async (req, res) => {
+    const responseHandler = new ResponseHandler(res);
+    try {
+        const event = await EventModule.getById(req.params.id);
+        return responseHandler.success(event, "Event Feched Successfully", 201);
+    } catch (error) {
+        return responseHandler.error(error.message, 500, error);
+    }
+}
+
 // Part 1 The Basic Infromation
 const createEventP1 = async (req, res) => {
     const responseHandler = new ResponseHandler(res);
@@ -62,7 +82,6 @@ const uploadEventImagesP2 = async (req, res) => {
         return responseHandler.error(error.message, 500, error);
     }
 }
-// Part 2 The Images
 const deleteEventImagesP2 = async (req, res) => {
     const responseHandler = new ResponseHandler(res);
     try {
@@ -88,6 +107,8 @@ const deleteEventImagesP2 = async (req, res) => {
     }
 }
 
+
+// My events
 const getMyEvents = async (req, res) => {
     const responseHandler = new ResponseHandler(res);
     try {
@@ -103,6 +124,10 @@ const getMyEvents = async (req, res) => {
 
 module.exports = {
     // The Basic Crud Oprations
+    getAllEvents,
+    getEventBiID,
+
+    // user events
     getMyEvents,
     // Part 1
     createEventP1,

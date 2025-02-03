@@ -2,6 +2,8 @@ const express = require("express");
 const routes = express.Router();
 const Events = require("../../models/event");
 const {
+    getAllEvents,
+    getEventBiID,
     getMyEvents,
     createEventP1,
     updateEventP1,
@@ -15,8 +17,11 @@ const { checkToken, isOwner } = require("../../middlewares/AuthVaildator");
 const { eventValidationRulesP1, eventValidationRulesP2 } = require("../../middlewares/validations/events");
 
 //  The Basic Crud Oprations
-routes.get("/", checkToken, getMyEvents);
+routes.get("/", getAllEvents);
+routes.get("/:id", getEventBiID);
 
+//user events
+routes.get("/my-events", checkToken, getMyEvents);
 
 
 // Part 1 The Basic Infromation
