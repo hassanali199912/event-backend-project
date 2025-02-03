@@ -37,7 +37,7 @@ const updateUsers = async (req, res) => {
 
         }
         const updatedUser = await UserModule.update(userID, req.body);
-        return responseHandler.success(updatedUser, "User Updated Successfully", 201);
+        return responseHandler.success(updatedUser, "User Updated Successfully", 200);
 
     } catch (error) {
         return responseHandler.error(error.message, 500, error);
@@ -52,7 +52,7 @@ const getOneUser = async (req, res) => {
             return responseHandler.error("User Not Found", 404);
 
         }
-        return responseHandler.success(isExist, "User Feched Successfully", 201);
+        return responseHandler.success(isExist, "User Feched Successfully", 200);
 
     } catch (error) {
         return responseHandler.error(error.message, 500, error);
@@ -62,7 +62,7 @@ const getAllUser = async (req, res) => {
     const responseHandler = new ResponseHandler(res);
     try {
         const isExist = await UserModule.getAll();
-        return responseHandler.success(isExist, "Users Feched Successfully", 201);
+        return responseHandler.success(isExist, "Users Feched Successfully", 200);
 
     } catch (error) {
         return responseHandler.error(error.message, 500, error);
@@ -78,7 +78,7 @@ const deleteUser = async (req, res) => {
 
         }
         const deletedUser = await UserModule.delete(userID);
-        return responseHandler.success(deletedUser, "User Deleted Successfully", 201);
+        return responseHandler.success(deletedUser, "User Deleted Successfully", 200);
 
     } catch (error) {
         return responseHandler.error(error.message, 500, error);

@@ -127,7 +127,10 @@ const eventSchema = new mongoose.Schema({
         required: true,
         default: false,
     },
-
+    sliderActive:{
+        type: Boolean,
+        default: false
+    }
 
 }, {
     timestamps: true

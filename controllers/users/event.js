@@ -49,7 +49,7 @@ const updateEventP1 = async (req, res) => {
             return responseHandler.notFound("Event not found");
         }
         const event = await EventModule.update(req.params.id, req.body);
-        return responseHandler.success(event, "Event updated successfully", 201);
+        return responseHandler.success(event, "Event updated successfully", 200);
     } catch (error) {
         return responseHandler.error(error.message, 500, error);
     }
@@ -77,7 +77,7 @@ const uploadEventImagesP2 = async (req, res) => {
                 [`images.${type}`]: normalizePath(image.path)
             }
         });
-        return responseHandler.success(event, "Event created successfully", 201);
+        return responseHandler.success(event, "Event updated successfully", 200);
     } catch (error) {
         return responseHandler.error(error.message, 500, error);
     }
@@ -101,7 +101,7 @@ const deleteEventImagesP2 = async (req, res) => {
 
 
 
-        return responseHandler.success(event, "Event created successfully", 201);
+        return responseHandler.success(event, "Event created successfully", 200);
     } catch (error) {
         return responseHandler.error(error.message, 500, error);
     }
@@ -113,7 +113,7 @@ const getMyEvents = async (req, res) => {
     const responseHandler = new ResponseHandler(res);
     try {
         const events = await EventModule.filterBy({ userId: req.userId });
-        return responseHandler.success(events, "Events Feched Successfully", 201);
+        return responseHandler.success(events, "Events Feched Successfully", 200);
     } catch (error) {
         return responseHandler.error(error.message, 500, error);
     }
