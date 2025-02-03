@@ -7,6 +7,7 @@ const BASIC_CRUD = require("../services/index-crud");
 module.exports.checkToken = async (req, res, next) => {
   const responseHandler = new ResponseHandler(res);
   try {
+    
     const authHeader = req.get("Authorization");
     if (!authHeader) {
       return responseHandler.authorizathionError("Not authenticated.");

@@ -21,7 +21,7 @@ routes.get("/", getAllEvents);
 routes.get("/:id", getEventBiID);
 
 //user events
-routes.get("/my-events", checkToken, getMyEvents);
+routes.get("/profile/my-events", checkToken, getMyEvents);
 
 
 // Part 1 The Basic Infromation

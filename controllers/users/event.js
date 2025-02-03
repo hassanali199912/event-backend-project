@@ -13,7 +13,7 @@ const getAllEvents = async (req, res) => {
     const responseHandler = new ResponseHandler(res);
     try {
         const events = await EventModule.getAll();
-        return responseHandler.success(events, "Events Feched Successfully", 201);
+        return responseHandler.success(events, "Events Feched Successfully", 200);
     } catch (error) {
         return responseHandler.error(error.message, 500, error);
     }
@@ -22,7 +22,7 @@ const getEventBiID = async (req, res) => {
     const responseHandler = new ResponseHandler(res);
     try {
         const event = await EventModule.getById(req.params.id);
-        return responseHandler.success(event, "Event Feched Successfully", 201);
+        return responseHandler.success(event, "Event Feched Successfully", 200);
     } catch (error) {
         return responseHandler.error(error.message, 500, error);
     }
