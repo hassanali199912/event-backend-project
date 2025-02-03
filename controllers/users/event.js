@@ -108,6 +108,24 @@ const deleteEventImagesP2 = async (req, res) => {
 }
 
 
+
+// Part 3 The Locations
+const uploadEventLocationsP3 = async (req, res) => {
+    const responseHandler = new ResponseHandler(res);
+    try {
+        const event = await EventModule.update(req.params.id, {
+            $set: {
+                map: req.body.map
+            }
+        });
+        return responseHandler.success(event, "Event updated successfully", 200);
+    } catch (error) {
+        return responseHandler.error(error.message, 500, error);
+    }
+}
+
+
+
 // My events
 const getMyEvents = async (req, res) => {
     const responseHandler = new ResponseHandler(res);
@@ -135,6 +153,9 @@ module.exports = {
     // Part 2
     uploadEventImagesP2,
     deleteEventImagesP2,
+    // Part 3
+    uploadEventLocationsP3,
+
 };
 
 

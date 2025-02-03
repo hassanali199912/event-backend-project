@@ -120,14 +120,18 @@ const eventSchema = new mongoose.Schema({
         type: [String],
         required: true,
     },
-
+    map: {
+        type: String,
+        required: false,
+        default: ""
+    },
     // active or visbality
     active: {
         type: Boolean,
         required: true,
         default: false,
     },
-    sliderActive:{
+    sliderActive: {
         type: Boolean,
         default: false
     }

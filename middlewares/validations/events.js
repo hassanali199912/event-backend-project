@@ -100,4 +100,9 @@ const eventValidationRulesP2 = [
         .isIn(["main", "secondary", "layout"]).withMessage("Type must be one of: main, sec, layout"),
 ]
 
-module.exports = { eventValidationRulesP1, eventValidationRulesP2 }
+const eventValidationRulesP3 = [
+    body("map")
+        .notEmpty().withMessage("Map src is required")
+]
+
+module.exports = { eventValidationRulesP1, eventValidationRulesP2 ,eventValidationRulesP3}
