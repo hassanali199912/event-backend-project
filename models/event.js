@@ -121,9 +121,21 @@ const eventSchema = new mongoose.Schema({
         required: true,
     },
     map: {
-        type: String,
-        required: false,
-        default: ""
+        src: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        lat: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        lng: {
+            type: String,
+            required: false,
+            default: ""
+        }
     },
     // active or visbality
     active: {
