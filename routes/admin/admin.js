@@ -5,5 +5,6 @@ routes.use("/users",require("./user-auth"));
 routes.use("/event",require("./event"));
 routes.use("/sponsers",require("./sponsers"));
 routes.use("/category",require("./category"));
+routes.use("/seats",require("./seats"));
 
 module.exports = routes;
