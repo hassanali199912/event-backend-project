@@ -32,6 +32,9 @@ class BaseCRUD {
     async filterBy(filter) {
         return await this.model.find(filter);
     }
+    async filterByAndSelect(filter, select) {
+        return await this.model.find(filter).select(select);
+    }
 }
 
 

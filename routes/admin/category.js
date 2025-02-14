@@ -2,18 +2,41 @@ const express = require("express");
 
 const routes = express.Router();
 
-const { createCategory, getAllCategories } = require("../../controllers/dashboard/category");
+const {
+    createCategory,
+    getAllCategories,
+    deleteCategory,
+    getById,
+    updateCategory,
+    changeVisablity
+} = require("../../controllers/dashboard/category");
 const { isAdmin } = require("../../middlewares/AuthVaildator");
 
 
 routes.get("/"
-    //,isAdmin
+    , isAdmin
     , getAllCategories);
+
+routes.get("/visablity/:id"
+    , isAdmin
+    , changeVisablity);
+
+
+routes.get("/:id"
+    , isAdmin
+    , getById);
 
 
 routes.post("/"
-    //,isAdmin
+    , isAdmin
     , createCategory);
+
+routes.post("/:id"
+    , isAdmin
+    , updateCategory);
+routes.delete("/:id"
+    , isAdmin
+    , deleteCategory);
 
 
 

@@ -7,6 +7,14 @@ const categorySchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
+    },
+    descriptions: {
+        type: String,
+        default: ""
+    },
+    status: {
+        type: Boolean,
+        default: true
     }
 
 }, { timeseries: true });
