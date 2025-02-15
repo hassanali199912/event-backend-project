@@ -6,10 +6,15 @@ class EventCrud extends IndexCrud {
         super(Event);
     }
     async getAll() {
-        return await Event.find().populate([
+        return await this.getAllPopulat([
             {
                 path: "userId",
                 select: "fname lname email",
+            },
+            {
+                path: "category",
+                ref: "Category",
+                select: "name"
             },
             {
                 path: "speakers",
@@ -17,15 +22,25 @@ class EventCrud extends IndexCrud {
         ]);
     }
     async getById(id) {
-        return await Event.findById(id).populate([
-            {
-                path: "userId",
-                select: "fname lname email",
-            },
-            {
-                path: "speakers",
-            }
-        ]);
+        return await this.getByIdPopulat(id,
+            [
+                {
+                    path: "userId",
+                    select: "fname lname email",
+                },
+                {
+                    path: "category",
+                    ref: "Category",
+                    select: "-_id name"
+                },
+                {
+                    path: "speakers",
+                }
+            ])
+
+
+
+
     }
 }
 

@@ -27,12 +27,12 @@ const userSchema = new mongoose.Schema({
 
 }, { timeseries: true });
 
+
 userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
     this.password = bcrypt.hash(this.password, 12);
     next();
 })
-
 userSchema.methods.comparePassword = async function (oldPass) {
     return bcrypt.compare(oldPass, this.password);
 }
@@ -41,5 +41,6 @@ userSchema.methods.generateToken = async function () {
         expiresIn: "3d",
     });
 }
+
 
 module.exports = mongoose.model("User", userSchema);

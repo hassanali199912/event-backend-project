@@ -10,6 +10,7 @@ class BaseCRUD {
     }
     // Get all records
     async getAll() {
+        
         return await this.model.find();
     }
     // Get single record by ID
@@ -34,6 +35,12 @@ class BaseCRUD {
     }
     async filterByAndSelect(filter, select) {
         return await this.model.find(filter).select(select);
+    }
+    async getAllPopulat(poublate){
+        return await this.model.find().populate(poublate);
+    }
+    async getByIdPopulat(id,poublate){
+        return await this.model.findById(id).populate(poublate);
     }
 }
 

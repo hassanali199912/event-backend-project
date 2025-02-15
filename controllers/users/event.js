@@ -12,7 +12,20 @@ const { normalizePath, removeFile } = require("../../utils/FileHelper");
 const getAllEvents = async (req, res) => {
     const responseHandler = new ResponseHandler(res);
     try {
-        const events = await EventModule.getAll();
+        const events = await EventModule.getAllPopulat([
+            {
+                path: "userId",
+                select: "fname lname email",
+            },
+            {
+                path: "category",
+                ref: "Category",
+                select: "-_id name"
+            },
+            {
+                path: "speakers",
+            }
+        ]);
         return responseHandler.success(events, "Events Feched Successfully", 200);
     } catch (error) {
         return responseHandler.error(error.message, 500, error);
@@ -21,7 +34,21 @@ const getAllEvents = async (req, res) => {
 const getEventBiID = async (req, res) => {
     const responseHandler = new ResponseHandler(res);
     try {
-        const event = await EventModule.getById(req.params.id);
+
+        const event = await EventModule.getByIdPopulat(req.params.id, [
+            {
+                path: "userId",
+                select: "fname lname email",
+            },
+            {
+                path: "category",
+                ref: "Category",
+                select: "-_id name"
+            },
+            {
+                path: "speakers",
+            }
+        ]);
         return responseHandler.success(event, "Event Feched Successfully", 200);
     } catch (error) {
         return responseHandler.error(error.message, 500, error);
@@ -139,6 +166,16 @@ const getMyEvents = async (req, res) => {
 
 
 
+const sliderSelector = async (req, res) => {
+    const responseHandler = new ResponseHandler(res);
+    try {
+        const events = await EventModule.filterBy({ sliderActive: true, active: true });
+        return responseHandler.success(events, "Events Feched Successfully", 200);
+    } catch (error) {
+        return responseHandler.error(error.message, 500, error);
+    }
+}
+
 
 module.exports = {
     // The Basic Crud Oprations
@@ -155,6 +192,7 @@ module.exports = {
     deleteEventImagesP2,
     // Part 3
     uploadEventLocationsP3,
+    sliderSelector
 
 };
 

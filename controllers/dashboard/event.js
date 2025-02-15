@@ -34,7 +34,7 @@ const createEventP1 = async (req, res) => {
     try {
         const event = await EventModule.create({
             ...req.body,
-            userId: "679bdd63ffb8852b1aff681d" //req.userId
+            userId: "679bdd63ffb8852b1aff681d" //req.userId admin
         });
         return responseHandler.success(event, "Event created successfully", 201);
     } catch (error) {

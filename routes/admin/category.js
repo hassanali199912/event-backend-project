@@ -21,11 +21,9 @@ routes.get("/visablity/:id"
     , isAdmin
     , changeVisablity);
 
-
 routes.get("/:id"
     , isAdmin
     , getById);
-
 
 routes.post("/"
     , isAdmin
@@ -37,7 +35,6 @@ routes.post("/:id"
 routes.delete("/:id"
     , isAdmin
     , deleteCategory);
-
 
 
 module.exports = routes

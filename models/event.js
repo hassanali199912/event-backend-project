@@ -104,16 +104,13 @@ const eventSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    speakers: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Speaker',
-    }],
     organizer: {
         type: [String],
         required: true,
     },
     category: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category',
         required: true,
     },
     tags: {
@@ -137,6 +134,15 @@ const eventSchema = new mongoose.Schema({
             default: ""
         }
     },
+    speakers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Speaker',
+    }],
+    agenda: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Day',
+    }],
+
     // active or visbality
     active: {
         type: Boolean,

@@ -9,7 +9,7 @@ const {
     updateEventP1,
     uploadEventImagesP2,
     deleteEventImagesP2,
-    uploadEventLocationsP3
+    uploadEventLocationsP3,
 } = require("../../controllers/users/event")
 
 
@@ -20,6 +20,7 @@ const { eventValidationRulesP1, eventValidationRulesP2, eventValidationRulesP3 }
 //  The Basic Crud Oprations
 routes.get("/", getAllEvents);
 routes.get("/:id", getEventBiID);
+
 
 //user events
 routes.get("/profile/my-events", checkToken, getMyEvents);
