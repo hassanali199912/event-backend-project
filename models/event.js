@@ -104,10 +104,10 @@ const eventSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    speakers: {
+    speakers: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Speaker',
-    },
+    }],
     organizer: {
         type: [String],
         required: true,

@@ -6,18 +6,26 @@ class EventCrud extends IndexCrud {
         super(Event);
     }
     async getAll() {
-        return await Event.find().populate("userId",{
-            fname:1,
-            lname:1,
-            email:1,
-        });
+        return await Event.find().populate([
+            {
+                path: "userId",
+                select: "fname lname email",
+            },
+            {
+                path: "speakers",
+            }
+        ]);
     }
     async getById(id) {
-        return await Event.findById(id).populate("userId",{
-            fname:1,
-            lname:1,
-            email:1,
-        });
+        return await Event.findById(id).populate([
+            {
+                path: "userId",
+                select: "fname lname email",
+            },
+            {
+                path: "speakers",
+            }
+        ]);
     }
 }
 
