@@ -23,6 +23,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ["CODEMODE", "CODEHASH"],
         default: "CODEHASH"
+    },
+    phone: {
+        type: String,
+        default: ""
+    },
+    location: {
+        type: String,
+        default: ""
     }
 
 }, { timeseries: true });
