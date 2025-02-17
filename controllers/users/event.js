@@ -1,6 +1,8 @@
 const ResponseHandler = require("../../utils/ResponseHandler");
 const EventCrud_crud = require("../../services/event-crud");
 const EventModule = new EventCrud_crud();
+const SeatesCrud_crud = require("../../services/seats-crud");
+const SeatesModule = new SeatesCrud_crud();
 const { normalizePath, removeFile } = require("../../utils/FileHelper");
 
 /*
@@ -35,7 +37,7 @@ const getEventBiID = async (req, res) => {
     const responseHandler = new ResponseHandler(res);
     try {
 
-        const event = await EventModule.getByIdPopulat(req.params.id, [
+        const eventDoc = await EventModule.getByIdPopulat(req.params.id, [
             {
                 path: "userId",
                 select: "fname lname email",
@@ -49,6 +51,17 @@ const getEventBiID = async (req, res) => {
                 path: "speakers",
             }
         ]);
+        if (!eventDoc) {
+            return responseHandler.notFound("Event not found");
+        }
+        const seats = await SeatesModule.filterBy({
+            eventId: eventDoc._id
+        });
+
+       const event = eventDoc.toObject();
+        event.seats = seats;
+
+        
         return responseHandler.success(event, "Event Feched Successfully", 200);
     } catch (error) {
         return responseHandler.error(error.message, 500, error);

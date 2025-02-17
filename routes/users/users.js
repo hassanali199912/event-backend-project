@@ -7,5 +7,6 @@ routes.use("/event", require("./event"))
 routes.use("/sponsers", require("./sponsers"))
 routes.use("/slider", require("./slider"))
 routes.use("/category", require("./category"))
+routes.use("/payment", require("./payment"))
 
 module.exports = routes;

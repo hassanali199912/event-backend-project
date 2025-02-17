@@ -35,6 +35,15 @@ const SeatSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    reservedSeates: {
+        type: Number,
+        default: 0
+    },
+    reservedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
+
     createdAt: { type: Date, default: Date.now }
 });
 
