@@ -10,7 +10,7 @@ class BaseCRUD {
     }
     // Get all records
     async getAll() {
-        
+
         return await this.model.find();
     }
     // Get single record by ID
@@ -33,19 +33,26 @@ class BaseCRUD {
     async filterBy(filter) {
         return await this.model.find(filter);
     }
-    async filterAndPopulate(filter,populate) {
+    async filterAndPopulate(filter, populate) {
         return await this.model.find(filter).populate(populate);
     }
-    async filterByIdAndPopulate(id,populate) {
+    async filterAndAggregate(filter, aggregate) {
+
+        return await this.model.aggregate([
+            { $match: filter },
+            ...aggregate
+        ]);
+    }
+    async filterByIdAndPopulate(id, populate) {
         return await this.model.findById(id).populate(populate);
     }
     async filterByAndSelect(filter, select) {
         return await this.model.find(filter).select(select);
     }
-    async getAllPopulat(poublate){
+    async getAllPopulat(poublate) {
         return await this.model.find().populate(poublate);
     }
-    async getByIdPopulat(id,poublate){
+    async getByIdPopulat(id, poublate) {
         return await this.model.findById(id).populate(poublate);
     }
 }

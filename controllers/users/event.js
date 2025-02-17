@@ -69,14 +69,14 @@ const getEventBiID = async (req, res) => {
         const days = await DaysModule.filterAndPopulate({ eventId: eventDoc._id }, [
             {
                 path: "sessions",
-                ref: "Session",
-            },{
-                path: "sessions.speaker",
-                ref: "Speacker",
+                populate: {
+                    path: "speaker",
+                    model: "Speaker"
+                }
             }
         ]);
 
-      
+
 
         const event = eventDoc.toObject();
         event.seats = seats;
