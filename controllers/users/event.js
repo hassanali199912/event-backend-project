@@ -1,9 +1,18 @@
 const ResponseHandler = require("../../utils/ResponseHandler");
 const EventCrud_crud = require("../../services/event-crud");
 const EventModule = new EventCrud_crud();
+
 const SeatesCrud_crud = require("../../services/seats-crud");
 const SeatesModule = new SeatesCrud_crud();
+
+const DaysCrud_crud = require("../../services/day-crud");
+const DaysModule = new DaysCrud_crud();
+
+const SessionCrud_crud = require("../../services/session");
+const SessionModule = new SessionCrud_crud();
+
 const { normalizePath, removeFile } = require("../../utils/FileHelper");
+const day = require("../../models/day");
 
 /*
     The Event Oprations For The Users
@@ -57,11 +66,22 @@ const getEventBiID = async (req, res) => {
         const seats = await SeatesModule.filterBy({
             eventId: eventDoc._id
         });
+        const days = await DaysModule.filterAndPopulate({ eventId: eventDoc._id }, [
+            {
+                path: "sessions",
+                ref: "Session",
+            },{
+                path: "sessions.speaker",
+                ref: "Speacker",
+            }
+        ]);
 
-       const event = eventDoc.toObject();
+      
+
+        const event = eventDoc.toObject();
         event.seats = seats;
+        event.agenda = days;
 
-        
         return responseHandler.success(event, "Event Feched Successfully", 200);
     } catch (error) {
         return responseHandler.error(error.message, 500, error);

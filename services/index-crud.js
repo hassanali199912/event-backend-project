@@ -33,6 +33,12 @@ class BaseCRUD {
     async filterBy(filter) {
         return await this.model.find(filter);
     }
+    async filterAndPopulate(filter,populate) {
+        return await this.model.find(filter).populate(populate);
+    }
+    async filterByIdAndPopulate(id,populate) {
+        return await this.model.findById(id).populate(populate);
+    }
     async filterByAndSelect(filter, select) {
         return await this.model.find(filter).select(select);
     }

@@ -7,14 +7,16 @@ const { eventValidationRulesP1, eventValidationRulesP2, eventValidationRulesP3 }
 
 const {
     sliderSelector,
-    getAllEvents,
-    getEventBiID,
     getMyEvents,
     createEventP1,
     updateEventP1,
     uploadEventImagesP2,
     deleteEventImagesP2,
     uploadEventLocationsP3 } = require("../../controllers/dashboard/event");
+const {
+    getAllEvents,
+    getEventBiID
+} = require("../../controllers/users/event");
 
 
 
